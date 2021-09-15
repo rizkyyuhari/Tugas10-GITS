@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean mobile;
 
     // URL to get contacts JSON
-    private final  static String url = "https://api.androidhive.info/contacts/";
+    private final static String url = "https://api.androidhive.info/contacts/";
 
     ArrayList<HashMap<String, String>> contactList;
 
@@ -65,42 +65,40 @@ public class MainActivity extends AppCompatActivity {
         new GetContacts().execute();
     }
 
-    protected void connCheck(){
+    protected void connCheck() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
 
-            wifi = networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
-            mobile = networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+        wifi = networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
+        mobile = networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
 
 
-            if(wifi){
-                Toast.makeText(this, "Internet Connected by WIFI Connection", Toast.LENGTH_SHORT).show();
+        if (wifi) {
+            Toast.makeText(this, "Internet Connected by WIFI Connection", Toast.LENGTH_SHORT).show();
 
-            }
-            else if(mobile){
-                Toast.makeText(this, "Internet Connected by Mobile Connection", Toast.LENGTH_SHORT).show();
-            }
+        } else if (mobile) {
+            Toast.makeText(this, "Internet Connected by Mobile Connection", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
 
     private static void ignoreSSLCertification() {
         // Create a trust manager that does not validate certificate chains
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                return new java.security.cert.X509Certificate[] {};
+                return new java.security.cert.X509Certificate[]{};
             }
 
             public void checkClientTrusted(X509Certificate[] chain,
-                                           String authType) throws CertificateException
-            {
+                                           String authType) throws CertificateException {
             }
 
             public void checkServerTrusted(X509Certificate[] chain,
                                            String authType) throws CertificateException {
             }
-        } };
+        }};
 
 
         try {
